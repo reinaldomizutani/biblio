@@ -1,21 +1,17 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include<string.h>
 #define MAX 50
 #define TAM 1000
+#include "pilha.h"
+#include "fila.h"
 
-typedef struct{
-    int nusp;
-    int ini;
-    int fim;
-} fila;
-
+ // STRUCTS DE ALUNOS
 typedef struct{
     char nome[MAX];
     char email[MAX];
     char telefone[MAX];
-    int nusp;
-    retirados devolver;
+    char nusp[MAX];
+    Pilha msg;
 }aluno;
 
 typedef struct{
@@ -25,13 +21,13 @@ typedef struct{
     int isbn;
     int edicao;
     int qtd;
-    fila alunos;
+    Fila filaUsuarios;
 }livro;
 
 typedef struct{
     union{
-        aluno infoAluno;
-        livro infoLivro;
+        aluno usuarios;
+        livro acervo;
     };
     int prox;
 } no;
@@ -45,18 +41,13 @@ typedef struct {
 void cria(banco*);
 void getnode(banco*,int*);
 void freenode(banco*,int*);
-void cadastraLivro(banco*,livro*,int*);
-void cadastraAluno(banco*,aluno*,int*);
 int EstaVazio(banco*);
 int EstaCheio(banco*);
-
-
-// funções da fila
-void insereFilaEspera(banco*);
-
-
 //void inserirAluno_Comeco(banco*, aluno*, int*);
 void retirarAluno(banco*,aluno*,int*);
-void retirarLivro(banco*,livro*,int*);
-void imprimeLivros (banco*);
-void imprimeAlunos (banco*);
+void inserirAluno_fim(banco*,aluno*,int*);
+void retirarLivro_comeco(banco*,livro*,int*);
+void inserirLivro_fim(banco*,livro*,int*);
+void retirarLivro (banco*, livro*, int*);
+void imprimeAluno (banco*);
+void imprime();
