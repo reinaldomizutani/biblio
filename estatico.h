@@ -5,16 +5,16 @@
 #define TAM 1000
 
 typedef struct{
-    int isbn;
-    int num;
-    int prox;
-}retirados;
+    int nusp;
+    int ini;
+    int fim;
+} fila;
 
 typedef struct{
     char nome[MAX];
     char email[MAX];
     char telefone[MAX];
-    char nusp[MAX];
+    int nusp;
     retirados devolver;
 }aluno;
 
@@ -25,6 +25,7 @@ typedef struct{
     int isbn;
     int edicao;
     int qtd;
+    fila alunos;
 }livro;
 
 typedef struct{
@@ -49,6 +50,9 @@ void cadastraAluno(banco*,aluno*,int*);
 int EstaVazio(banco*);
 int EstaCheio(banco*);
 
+
+// funções da fila
+void insereFilaEspera(banco*);
 
 
 //void inserirAluno_Comeco(banco*, aluno*, int*);
