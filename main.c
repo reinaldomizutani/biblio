@@ -2,10 +2,10 @@
 
 int main(){
 // declaracao de variaveis
-    int opcao, erro;
+    int opcao, erro, opMsg;
     aluno Aluno;
     livro Livro;
-    banco infoAluno, acervo;
+    banco usuarios, acervo;
 
     cria(&usuarios);
     cria(&acervo);
@@ -25,7 +25,7 @@ int main(){
                 printf("nusp: ");
                 scanf(" %[^\n]s", Aluno.nusp);
                 inserirAluno_fim(&usuarios, &Aluno, &erro);
-                imprimeAlunos(&usuarios);
+                void imprimeAlunos (&usuarios);
 
                 break;
 
@@ -43,7 +43,7 @@ int main(){
                 printf("qtd: ");
                 scanf("%d", &Livro.qtd);
                 inserirLivro_fim(&acervo, &Livro, &erro);
-                imprimeLivros(&acervo);
+
 
                 break;
 
@@ -57,5 +57,38 @@ int main(){
     printf("digite a opcao desejada (-1 para sair)\n");
     scanf("%d",&opcao);
     }
+
+    //MENSAGENS CONTIDAS NA PILHA
+    //1-CADASTRO FEITO COM SUCESSO! Aproveite nosso acervo!!!
+    //2-Voce foi inserido na fila de espera.
+    //3-O livro que solicitou ja está disponível para retirada.
+    //4-Livro devolvido na biblioteca! Obrigado!
+    //5-Voce foi removido da lista da espera.
+
+   /* switch (opMsg){
+
+        case 1:
+            printf("CADASTRO FEITO COM SUCESSO! Aproveite nosso acervo!!!");
+            break;
+
+        case 2:
+            printf("Voce foi inserido na fila de espera.");
+            break;
+
+        case 3:
+            printf("O livro que solicitou ja está disponível para retirada.");
+            break;
+
+        case 4:
+            printf("Livro devolvido na biblioteca! Obrigado!");
+            break;
+
+        case 5:
+            printf("Voce foi removido da lista da espera.");
+            break;
+    }
+
+*/
+
     return 0;
 }
