@@ -23,8 +23,8 @@ typedef struct{
 
 typedef struct{
     union{
-        aluno usuarios;
-        livro acervo;
+        aluno infoAluno;
+        livro infoLivro;
     };
     int prox;
 } no;
@@ -45,4 +45,5 @@ void retirarAluno(banco*,aluno*,int*);
 void inserirAluno_fim(banco*,aluno*,int*);
 void retirarLivro(banco*,livro*,int*);
 void inserirLivro_fim(banco*,livro*,int*);
-void imprimeAluno (banco*);
+void imprimeLivros (banco*);
+void imprimeAlunos (banco*);
