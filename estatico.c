@@ -1,5 +1,4 @@
 #include "estatico.h"
-#include "pilha.h"
 
 void cria(banco *B) {
      int i;
@@ -40,7 +39,7 @@ int EstaCheio(banco *B) {
      else {
           *erro=0;
           getnode(B,&pos);
-          B->itens[pos].usuarios=*X;
+          B->itens[pos].infoAluno=*X;
           B->itens[pos].prox=B->ini;
           B->ini=pos;
           if (B->fim==-1)
@@ -53,7 +52,7 @@ void retirarAluno(banco *B, aluno *x, int *erro) {
         *erro=1;
      else {
           *erro=0;
-          *x=B->itens[B->ini].usuarios;
+          *x=B->itens[B->ini].infoAluno;
           pos=B->ini;
           B->ini=B->itens[B->ini].prox;
           if (B->ini==-1)
@@ -68,7 +67,7 @@ void inserirAluno_fim(banco *B, aluno *x, int *erro) {
      else {
           *erro=0;
           getnode(B,&pos);
-          B->itens[pos].usuarios=*x;
+          B->itens[pos].infoAluno=*x;
           B->itens[pos].prox=-1;
           if (B->fim!=-1)
              B->itens[B->fim].prox=pos;
@@ -84,7 +83,7 @@ void retirarLivro(banco *B, livro *x, int *erro) {
         *erro=1;
      else {
           *erro=0;
-          *x=B->itens[B->ini].acervo;
+          *x=B->itens[B->ini].infoLivro;
           pos=B->ini;
           B->ini=B->itens[B->ini].prox;
           if (B->ini==-1)
@@ -99,66 +98,34 @@ void inserirLivro_fim(banco *B, livro *x, int *erro) {
      else {
           *erro=0;
           getnode(B,&pos);
-          B->itens[pos].acervo=*x;
+          B->itens[pos].infoLivro=*x;
           B->itens[pos].prox=-1;
           if (B->fim!=-1)
-             B->itens[B->fim].prox=pos;
+              B->itens[B->fim].prox=pos;
           B->fim=pos;
           if (B->ini==-1)
-             B->ini=pos;
+              B->ini=pos;
      }
 }
 
-/*void imprimeBanco(banco *B, aluno *x){
-	int pos;
-	for(pos = 0; pos<TAM; pos++){
-		*x = B->itens[pos].usuarios;
-		if(strcmp(x->nome,"")!=0 && strcmp(x->nome,"-1")!=0)
-			printf("%s\n", x->nome);
-	}
-}*/
+void imprimeLivros (banco *B){
+int i = B->ini;
+livro liv;
 
-
-//FUNCOES DA PILHA
-/*void Create(Pilha *p){
-	p->topo = -1;
-	p->total = 0;
-	return;
+while(i != -1){
+    liv = B->itens[i].infoLivro;
+    printf("\n\n%s\n%s\n%s\n\n", liv.titulo, liv.autor, liv.editora);
+    i = B->itens[i].prox;
 }
-
-void Empty(Pilha *p){
-	p->topo = -1;
-	return;
 }
-
-int IsEmpty(Pilha *P){
-	if(P->topo == -1)
-		return 1;
-	else return 0;
-}
-
-int IsFull(Pilha *P){
-	if(P->topo == TamP-1)
-		return 1;
-	else return 0;
-}
-
-int Push(Pilha *P, elem *X){
-
-	if(!IsFull(P)){
-		P->topo++;
-		P->total++;
-		P->itens[P->topo] = *X;
-		return 0;
-	} else return 1;*/
 
 void imprimeAlunos (banco *B){
-    int i = B->ini;
-    aluno al;
+int i = B->ini;
+aluno al;
 
-    while(i != -1){
-        al = B->itens[i].infoAluno;
-        printf("\n\n%s\n%s\n%s\n%s\n\n", al.nome, al.nusp, al.email, al.telefone);
-        i = B->itens[i].prox;
-    }
+while(i != -1){
+    al = B->itens[i].infoAluno;
+    printf("\n\n%s\n%s\n%s\n%szn\n", al.nome, al.nusp, al.email, al.telefone);
+    i = B->itens[i].prox;
+}
 }

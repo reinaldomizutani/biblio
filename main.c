@@ -5,7 +5,7 @@ int main(){
     int opcao, erro;
     aluno Aluno;
     livro Livro;
-    banco infoAluno, acervo;
+    banco usuarios, acervo;
 
     cria(&usuarios);
     cria(&acervo);
