@@ -1,17 +1,21 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<string.h>
 #define MAX 50
 #define TAM 1000
-#include "pilha.h"
-#include "fila.h"
+#define tamfila 10
 
- // STRUCTS DE ALUNOS
+
+typedef struct {
+    int inicio, fim, total;
+    int nusp[tamfila];
+} fila;
+
 typedef struct{
     char nome[MAX];
     char email[MAX];
     char telefone[MAX];
-    char nusp[MAX];
-    Pilha msg;
+    int nusp;
 }aluno;
 
 typedef struct{
@@ -21,13 +25,13 @@ typedef struct{
     int isbn;
     int edicao;
     int qtd;
-    Fila filaUsuarios;
+    fila alunos;
 }livro;
 
 typedef struct{
     union{
-        aluno usuarios;
-        livro acervo;
+        aluno infoAluno;
+        livro infoLivro;
     };
     int prox;
 } no;
@@ -38,16 +42,41 @@ typedef struct {
 } banco;
 
 
+//operações da fila
+void criaFila(fila*);
+void EsvaziaFila(fila*);
+int EstaVaziaFila(fila*);
+int EstaCheiaFila(fila*);
+void EntraFila(fila*, int*, int*);
+/*
+
+
+void SaiFila(Fila*, elem*, int*);
+void busca_aluno_fila(Fila *F, int nusp, int *pos3);*/
+
+
+// operações TAD
 void cria(banco*);
 void getnode(banco*,int*);
 void freenode(banco*,int*);
+void cadastraLivro(banco*,livro*,int*);
+void cadastraAluno(banco*,aluno*,int*);
 int EstaVazio(banco*);
 int EstaCheio(banco*);
+void Entra(fila*, int, int*);
+
+
+// funções da fila
+//void insereFilaEspera(banco*);
+
+
 //void inserirAluno_Comeco(banco*, aluno*, int*);
 void retirarAluno(banco*,aluno*,int*);
-void inserirAluno_fim(banco*,aluno*,int*);
-void retirarLivro_comeco(banco*,livro*,int*);
-void inserirLivro_fim(banco*,livro*,int*);
-void retirarLivro (banco*, livro*, int*);
-void imprimeAluno (banco*);
-void imprime();
+void retirarLivro(banco*,livro*,int*);
+void imprimeLivros (banco*);
+void imprimeAlunos (banco*);
+
+
+
+// operações auxiliares
+void buscaLivro(banco*, int, int*);
