@@ -23,7 +23,7 @@ int main(){
                 printf("telefone: ");
                 scanf(" %[^\n]s", Aluno.telefone);
                 printf("nusp: ");
-                scanf(" %[^\n]s", Aluno.nusp);
+                scanf("%d", &Aluno.nusp);
                 cadastraAluno(&usuarios, &Aluno, &erro);
                 imprimeAlunos(&usuarios);
 
