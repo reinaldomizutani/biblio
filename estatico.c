@@ -32,35 +32,23 @@ int EstaCheio(banco *B) {
        return(1);
     else return(0);
 }
-/*void inserirAluno_Comeco(banco *B, aluno *X, int *erro) {
+void cadastraLivro(banco *B, livro *x, int *erro) {
      int pos;
      if (EstaCheio(B))
         *erro=1;
      else {
           *erro=0;
           getnode(B,&pos);
-          B->itens[pos].infoAluno=*X;
-          B->itens[pos].prox=B->ini;
-          B->ini=pos;
-          if (B->fim==-1)
-             B->fim=pos;
-     }
-}*/
-void retirarAluno(banco *B, aluno *x, int *erro) {
-     int pos;
-     if (EstaVazio(B))
-        *erro=1;
-     else {
-          *erro=0;
-          *x=B->itens[B->ini].infoAluno;
-          pos=B->ini;
-          B->ini=B->itens[B->ini].prox;
+          B->itens[pos].infoLivro=*x;
+          B->itens[pos].prox=-1;
+          if (B->fim!=-1)
+              B->itens[B->fim].prox=pos;
+          B->fim=pos;
           if (B->ini==-1)
-             B->fim=-1;
-          freenode(B,&pos);
+              B->ini=pos;
      }
 }
-void inserirAluno_fim(banco *B, aluno *x, int *erro) {
+void cadastraAluno(banco *B, aluno *x, int *erro) {
      int pos;
      if (EstaCheio(B))
         *erro=1;
@@ -77,6 +65,31 @@ void inserirAluno_fim(banco *B, aluno *x, int *erro) {
      }
 }
 
+
+
+
+
+
+
+
+
+
+void retirarAluno(banco *B, aluno *x, int *erro) {
+     int pos;
+     if (EstaVazio(B))
+        *erro=1;
+     else {
+          *erro=0;
+          *x=B->itens[B->ini].infoAluno;
+          pos=B->ini;
+          B->ini=B->itens[B->ini].prox;
+          if (B->ini==-1)
+             B->fim=-1;
+          freenode(B,&pos);
+     }
+}
+
+
 void retirarLivro(banco *B, livro *x, int *erro) {
      int pos;
      if (EstaVazio(B))
@@ -91,27 +104,12 @@ void retirarLivro(banco *B, livro *x, int *erro) {
           freenode(B,&pos);
      }
 }
-void inserirLivro_fim(banco *B, livro *x, int *erro) {
-     int pos;
-     if (EstaCheio(B))
-        *erro=1;
-     else {
-          *erro=0;
-          getnode(B,&pos);
-          B->itens[pos].infoLivro=*x;
-          B->itens[pos].prox=-1;
-          if (B->fim!=-1)
-              B->itens[B->fim].prox=pos;
-          B->fim=pos;
-          if (B->ini==-1)
-              B->ini=pos;
-     }
-}
+
 
 void imprimeLivros (banco *B){
 int i = B->ini;
 livro liv;
-
+system("cls");
 while(i != -1){
     liv = B->itens[i].infoLivro;
     printf("\n\n%s\n%s\n%s\n\n", liv.titulo, liv.autor, liv.editora);
@@ -122,7 +120,7 @@ while(i != -1){
 void imprimeAlunos (banco *B){
 int i = B->ini;
 aluno al;
-
+system("cls");
 while(i != -1){
     al = B->itens[i].infoAluno;
     printf("\n\n%s\n%s\n%s\n%szn\n", al.nome, al.nusp, al.email, al.telefone);
