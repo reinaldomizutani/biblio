@@ -4,11 +4,14 @@
 #define MAX 50
 #define TAM 1000
 #define tamfila 10
-
+typedef struct{
+    int nusp;
+    int prox;
+}numero;
 
 typedef struct {
     int inicio, fim, total;
-    int nusp[tamfila];
+    numero alu[tamfila];
 } fila;
 
 typedef struct{
@@ -48,6 +51,7 @@ void EsvaziaFila(fila*);
 int EstaVaziaFila(fila*);
 int EstaCheiaFila(fila*);
 void EntraFila(fila*, int*, int*);
+void Sai(fila*, int*);
 /*
 
 
@@ -64,7 +68,10 @@ void cadastraAluno(banco*,aluno*,int*);
 int EstaVazio(banco*);
 int EstaCheio(banco*);
 void Entra(fila*, int, int*);
-
+void emprestaLivro(banco*, int*, int*, int*);
+void retornaLivro(banco*, int*, int*);
+void removeLivro(banco*, int*, int *);
+void removeAluno(banco*, int*, int*);
 
 // funções da fila
 //void insereFilaEspera(banco*);
@@ -80,3 +87,4 @@ void imprimeAlunos (banco*);
 
 // operações auxiliares
 void buscaLivro(banco*, int, int*);
+void removeFilaEspera(banco*, int*);
